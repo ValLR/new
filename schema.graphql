@@ -1,0 +1,600 @@
+type AddToProjectResourcesPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  resourcesResource: Resource
+  projectProject: Project
+  resourcesResourceEdge: ResourceEdge
+  projectProjectEdge: ProjectEdge
+}
+
+input AddToProjectResourcesResourceInput {
+  projectProjectId: ID!
+  resourcesResourceId: ID!
+  clientMutationId: String!
+}
+
+input CreateProject {
+  canonicalName: String!
+  description: String
+  slug: String!
+  resourcesIds: [ID!]
+  resources: [ProjectresourcesResource!]
+}
+
+input CreateProjectInput {
+  canonicalName: String!
+  description: String
+  slug: String!
+  resourcesIds: [ID!]
+  resources: [ProjectresourcesResource!]
+  clientMutationId: String!
+}
+
+type CreateProjectPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  project: Project
+  edge: ProjectEdge
+}
+
+input CreateResource {
+  name: String!
+  type: String!
+  url: String!
+  projectId: ID
+  project: ResourceprojectProject
+}
+
+input CreateResourceInput {
+  name: String!
+  type: String!
+  url: String!
+  projectId: ID
+  project: ResourceprojectProject
+  clientMutationId: String!
+}
+
+type CreateResourcePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  resource: Resource
+  edge: ResourceEdge
+  project: Project
+}
+
+input CreateUser {
+  email: String
+  name: String!
+}
+
+type CreateUserPayload {
+  user: User
+  clientMutationId: String
+  viewer: Viewer!
+}
+
+scalar DateTime
+
+input DeleteProjectInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteProjectPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  project: Project
+  edge: ProjectEdge
+  deletedId: ID
+}
+
+input DeleteResourceInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteResourcePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  resource: Resource
+  edge: ResourceEdge
+  project: Project
+  deletedId: ID
+}
+
+input DeleteUserInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+  deletedId: ID
+}
+
+type HelloPayload {
+  message: String!
+}
+
+type Mutation {
+  createProject(input: CreateProjectInput!): CreateProjectPayload
+  createResource(input: CreateResourceInput!): CreateResourcePayload
+  updateProject(input: UpdateProjectInput!): UpdateProjectPayload
+  updateResource(input: UpdateResourceInput!): UpdateResourcePayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+  updateOrCreateProject(input: UpdateOrCreateProjectInput!): UpdateOrCreateProjectPayload
+  updateOrCreateResource(input: UpdateOrCreateResourceInput!): UpdateOrCreateResourcePayload
+  updateOrCreateUser(input: UpdateOrCreateUserInput!): UpdateOrCreateUserPayload
+  deleteProject(input: DeleteProjectInput!): DeleteProjectPayload
+  deleteResource(input: DeleteResourceInput!): DeleteResourcePayload
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload
+  addToProjectResources(input: AddToProjectResourcesResourceInput!): AddToProjectResourcesPayload
+  createUser(input: SignupUserInput!): CreateUserPayload!
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Project implements Node {
+  canonicalName: String!
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  resources(filter: ResourceFilter, orderBy: ResourceOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ResourceConnection
+  slug: String!
+  updatedAt: DateTime!
+}
+
+type ProjectConnection {
+  pageInfo: PageInfo!
+  edges: [ProjectEdge]
+  count: Int!
+}
+
+type ProjectEdge {
+  node: Project!
+  cursor: String!
+}
+
+input ProjectFilter {
+  AND: [ProjectFilter!]
+  OR: [ProjectFilter!]
+  canonicalName: String
+  canonicalName_not: String
+  canonicalName_in: [String!]
+  canonicalName_not_in: [String!]
+  canonicalName_lt: String
+  canonicalName_lte: String
+  canonicalName_gt: String
+  canonicalName_gte: String
+  canonicalName_contains: String
+  canonicalName_not_contains: String
+  canonicalName_starts_with: String
+  canonicalName_not_starts_with: String
+  canonicalName_ends_with: String
+  canonicalName_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  resources_every: ResourceFilter
+  resources_some: ResourceFilter
+  resources_none: ResourceFilter
+}
+
+enum ProjectOrderBy {
+  canonicalName_ASC
+  canonicalName_DESC
+  createdAt_ASC
+  createdAt_DESC
+  description_ASC
+  description_DESC
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input ProjectresourcesResource {
+  name: String!
+  type: String!
+  url: String!
+}
+
+type Query {
+  viewer: Viewer!
+  node(id: ID!): Node
+}
+
+type Resource implements Node {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  project(filter: ProjectFilter): Project!
+  type: String!
+  updatedAt: DateTime!
+  url: String!
+}
+
+type ResourceConnection {
+  pageInfo: PageInfo!
+  edges: [ResourceEdge]
+  count: Int!
+}
+
+type ResourceEdge {
+  node: Resource!
+  cursor: String!
+}
+
+input ResourceFilter {
+  AND: [ResourceFilter!]
+  OR: [ResourceFilter!]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  project: ProjectFilter
+}
+
+enum ResourceOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  url_ASC
+  url_DESC
+}
+
+input ResourceprojectProject {
+  canonicalName: String!
+  description: String
+  slug: String!
+  resourcesIds: [ID!]
+  resources: [ProjectresourcesResource!]
+}
+
+input SignupUserInput {
+  email: String
+  name: String!
+  clientMutationId: String!
+}
+
+input UpdateOrCreateProjectInput {
+  update: UpdateProject!
+  create: CreateProject!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateProjectPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  project: Project
+  edge: ProjectEdge
+}
+
+input UpdateOrCreateResourceInput {
+  update: UpdateResource!
+  create: CreateResource!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateResourcePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  resource: Resource
+  edge: ResourceEdge
+  project: Project
+}
+
+input UpdateOrCreateUserInput {
+  update: UpdateUser!
+  create: CreateUser!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+input UpdateProject {
+  canonicalName: String
+  description: String
+  id: ID!
+  slug: String
+  resourcesIds: [ID!]
+  resources: [ProjectresourcesResource!]
+}
+
+input UpdateProjectInput {
+  canonicalName: String
+  description: String
+  id: ID!
+  slug: String
+  resourcesIds: [ID!]
+  resources: [ProjectresourcesResource!]
+  clientMutationId: String!
+}
+
+type UpdateProjectPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  project: Project
+  edge: ProjectEdge
+}
+
+input UpdateResource {
+  id: ID!
+  name: String
+  type: String
+  url: String
+  projectId: ID
+  project: ResourceprojectProject
+}
+
+input UpdateResourceInput {
+  id: ID!
+  name: String
+  type: String
+  url: String
+  projectId: ID
+  project: ResourceprojectProject
+  clientMutationId: String!
+}
+
+type UpdateResourcePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  resource: Resource
+  edge: ResourceEdge
+  project: Project
+}
+
+input UpdateUser {
+  email: String
+  id: ID!
+  name: String
+}
+
+input UpdateUserInput {
+  email: String
+  id: ID!
+  name: String
+  clientMutationId: String!
+}
+
+type UpdateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+type User implements Node {
+  email: String
+  id: ID!
+  name: String!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]
+  count: Int!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+input UserFilter {
+  AND: [UserFilter!]
+  OR: [UserFilter!]
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+}
+
+enum UserOrderBy {
+  email_ASC
+  email_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type Viewer {
+  allProjects(filter: ProjectFilter, orderBy: ProjectOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
+  allResources(filter: ResourceFilter, orderBy: ResourceOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ResourceConnection!
+  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user: User
+  Project(id: ID, slug: String): Project
+  Resource(id: ID, url: String): Resource
+  User(email: String, id: ID): User
+  hello(name: String): HelloPayload
+  id: ID!
+}

@@ -1,0 +1,11 @@
+{
+  "presets": [
+    {
+	    "plugins": [
+			"relay",
+			"transform-runtime"
+	    ],
+    },
+    "react",
+  ],
+}
