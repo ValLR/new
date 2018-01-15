@@ -11,19 +11,20 @@ class Project extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div class="container">
+        <div class="row">
           <h3 key={this.props.project.id}>{this.props.project.canonicalName}</h3>
+        </div>
+        <div class="row">
           {available_services.map((service) =>
-            <div>
-              <h4>{service}</h4>
-              <div>
-                  <Icon service={service} project={this.props.project}/>
-              </div>
+            <div class="col-lg-2">
+              <Icon service={service} project={this.props.project}/>
             </div>
           )}
         </div>
       </div>
+
+
     )
   }
 }

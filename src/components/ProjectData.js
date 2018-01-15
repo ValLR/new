@@ -10,7 +10,7 @@ class ProjectData extends Component {
 
   render() {
     return (
-      <div class="container">
+      <div>
         {this.props.viewer.allProjects.edges.map(({node}) =>
             <Project key={node.__id} project={node} />
         )}
