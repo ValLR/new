@@ -3,32 +3,49 @@ import Icon from './Icon'
 
 class Service extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       hasService: false,
-      url:""
+      url: "",
+      name: "",
     }
   }
 
   componentDidMount(){
-    this.props.project.resources.edges.map(({node}) =>
-      node.type === this.props.service ?
+    const { project, service } = this.props
+    project.resources.edges.find(({node}) => 
+      node.type === service ?
         this.setState({
-          hasService:true,
-          url:node.url
+          hasService: true,
+          url: node.url,
+          name: node.name,
         })
       :
       ''
-    )
 
+    );
+
+/*
+    project.resources.edges.map(({node}) =>
+      node.type === service ?
+        this.setState({
+          hasService: true,
+          url: node.url,
+          name: node.name,
+        })
+      :
+      ''
+    )    
+*/
   }
 
   render() {
+    const { name, url, hasService } = this.state;
+    const { service } = this.props
+
     return (
-      <div>
-        <Icon url={this.state.url} state={this.state.hasService} service={this.props.service} />
-      </div>
+      <Icon name={name} url={url} state={hasService} service={service} />
     )
   }
 }

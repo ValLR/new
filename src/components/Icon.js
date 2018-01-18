@@ -3,19 +3,23 @@ import React, { Component } from 'react'
 class Icon extends Component {
 
   render() {
-
+    const { url, name, state } = this.props;
     const service = this.props.service;
     const source = '/images/' + service + '.png';
     
     return (
       <div>
-        {this.props.state ?
+        {state ?
           <div>
-            <a href={this.props.url}><img src={source} alt={service} class='access img-fluid' /></a>
+            <a href={url} title={name}>
+              <img src={source} alt={service} class='access img-fluid' />
+            </a>
           </div>    
         :
           <div>
-            <a href={this.props.url} class='disabled'><img src={source} alt={service} class='disabled img-fluid' /></a>
+            <a href={url} class='disabled'>
+              <img src={source} alt={service} class='disabled img-fluid' />
+            </a>
           </div>
         }
       </div>
